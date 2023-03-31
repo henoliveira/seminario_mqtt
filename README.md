@@ -23,10 +23,10 @@ alguma não listada).
 - Entrear tudo em um ZIP
 
 ## Apresentação (03/05)
-![image](https://user-images.githubusercontent.com/25267506/229153115-5dc6fb09-f1cb-48e4-a561-869d184f2a30.png)
-
 O grupo deverá entregar a documentação (slides, código, tutorial) e apresentar o seminário presencialmente.
 Fazer o upload da documentação (.zip) no link disponível **até o dia 25/04 as 23:59h. A apresentação será no dia 03/10.**
+![image](https://user-images.githubusercontent.com/25267506/229153115-5dc6fb09-f1cb-48e4-a561-869d184f2a30.png)
+
 
 ## Observações
 - Entregas fora do prazo serão desconsideradas e o grupo não receberá nota por esta atividade.
