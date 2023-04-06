@@ -1,50 +1,47 @@
 import random
-import time
 
-from paho.mqtt import client as mqtt_client
-
-import utils
+from paho.mqtt import client as MqttClient
 
 BROKER = "broker.emqx.io"
 PORT = 1883
-TOPIC = [("text_response", 0), ("text_file", 0), ("func_eval", 0)]
 CLIENT_ID = f"python-mqtt-{random.randint(0, 1000)}"
 USERNAME = "emqx"
 PASSWORD = "public"
 
+RESPONSE_TOPICS = [
+    ("response_text", 0),
+    ("response_text_file", 0),
+    ("response_func_eval", 0),
+]
+REQUEST_TOPICS = [
+    ("request_text", 0),
+    ("request_text_file", 0),
+    ("request_func_eval", 0),
+]
 
-def connect_mqtt() -> mqtt_client:
+
+def mqtt_connect() -> MqttClient:
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
             print("Connected to MQTT Broker!")
         else:
             print("Failed to connect, return code %d\n", rc)
 
-    client = mqtt_client.Client(CLIENT_ID)
+    client = MqttClient.Client(CLIENT_ID)
     client.username_pw_set(USERNAME, PASSWORD)
     client.on_connect = on_connect
     client.connect(BROKER, PORT)
     return client
 
 
-def publish(client: mqtt_client):
-    msg_count = 0
-    while True:
-        time.sleep(1)
-        msg = f"messages: {msg_count}"
-        result = client.publish(utils.TOPIC, msg)
-        # result: [0, 1]
-        status = result[0]
-        if status == 0:
-            print(f"Send `{msg}` to topic `{utils.TOPIC}`")
-        else:
-            print(f"Failed to send message to topic {utils.TOPIC}")
-        msg_count += 1
-
-
-def subscribe(client: mqtt_client):
-    def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-
-    client.subscribe(utils.TOPIC)
+def mqtt_subscribe(client: MqttClient, topics, on_message: callable):
+    client.subscribe(topics)
     client.on_message = on_message
+
+
+def mqtt_publish(client: MqttClient, topic: str, message: str):
+    result = client.publish(topic, message)
+    if result[0] == 0:
+        print(f"Send `{message}` to topic `{topic}`")
+    else:
+        print(f"Failed to send message to topic {topic}")
