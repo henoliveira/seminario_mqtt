@@ -1,55 +1,54 @@
+from typing import Any
+
 import utils
 
 
 def response_text(
-    client: utils.MqttClient,
+    client: utils.Client,
     payload: str,
     topic_req: str,
     topic_res: str,
 ):
-    response = f"RESPONSE TO: Received `{payload}` from `{topic_req}` topic"
-    print(f"Received `{payload}` from `{topic_req}` topic")
-    utils.mqtt_publish(client, topic_res, payload)
-    print(f"Sent `{response}` to `{topic_res}` topic")
+    print(f"Got `{payload}` from topic `{topic_req}`")
+    utils.mqtt_publish(client, topic_res, payload.upper())
 
 
 def reponse_text_file(
-    client: utils.MqttClient,
+    client: utils.Client,
     payload: str,
+    topic_req: str,
     topic_res: str,
 ):
-    print(f"Received `{payload}` from `{topic_res}` topic")
+    print(f"Got `{payload}` from topic `{topic_req}`")
 
 
 def reponse_func_eval(
-    client: utils.MqttClient,
+    client: utils.Client,
     payload: str,
+    topic_req: str,
     topic_res: str,
-):
-    try:
-        result = eval(payload)
-        utils.mqtt_publish(client, str(result))
-        print(f"Received `{result}` from `{topic_res}` topic")
-    except Exception as e:
-        print(f"Failed to evaluate `{payload}` from `{topic_res}` topic: {e}")
+) -> None:
+    print(f"Got `{payload}` from topic `{topic_req}`")
+    utils.mqtt_publish(client=client, topic=topic_res, message=str(eval(payload)))
 
 
-def on_message(client, userdata, message: str):
+def on_message(client: utils.Client, userdata: Any, message: utils.MQTTMessage) -> None:
     topic = message.topic
     payload = message.payload.decode()
 
-    match topic:
-        case "request_text":
-            response_text(client, payload, topic, "response_text")
-        case "request_text_file":
-            reponse_text_file(client, topic, payload)
-        case "request_func_eval":
-            reponse_func_eval(client, payload, topic)
+    if topic == utils.Topics.REQUEST_TEXT:
+        response_text(client, payload, topic, utils.Topics.RESPONSE_TEXT)
+
+    elif topic == utils.Topics.REQUEST_TEXT_FILE:
+        reponse_text_file(client, topic, payload, utils.Topics.RESPONSE_TEXT_FILE)
+
+    elif topic == utils.Topics.REQUEST_FUNC_EVAL:
+        reponse_func_eval(client, payload, topic, utils.Topics.RESPONSE_FUNC_EVAL)
 
 
 def main():
     client = utils.mqtt_connect()
-    utils.mqtt_subscribe(client, utils.REQUEST_TOPICS, on_message)
+    utils.mqtt_subscribe(client, utils.Topics.request_topics(), on_message)
     client.loop_forever()
 
 
