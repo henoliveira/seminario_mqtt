@@ -19,6 +19,9 @@ def reponse_text_file(
     topic_req: str,
     topic_res: str,
 ):
+    arquivo = open('file.txt', 'w')
+    arquivo.write(payload)
+    arquivo.close()
     print(f"Got `{payload}` from topic `{topic_req}`")
 
 
@@ -26,7 +29,7 @@ def reponse_func_eval(
     client: utils.Client,
     payload: str,
     topic_req: str,
-    topic_res: str,
+    topic_res: str, 
 ) -> None:
     print(f"Got `{payload}` from topic `{topic_req}`")
     utils.mqtt_publish(client=client, topic=topic_res, message=str(eval(payload)))
@@ -40,7 +43,7 @@ def on_message(client: utils.Client, userdata: Any, message: utils.MQTTMessage) 
         response_text(client, payload, topic, utils.Topics.RESPONSE_TEXT)
 
     elif topic == utils.Topics.REQUEST_TEXT_FILE:
-        reponse_text_file(client, topic, payload, utils.Topics.RESPONSE_TEXT_FILE)
+        reponse_text_file(client, payload, topic, utils.Topics.RESPONSE_TEXT_FILE)
 
     elif topic == utils.Topics.REQUEST_FUNC_EVAL:
         reponse_func_eval(client, payload, topic, utils.Topics.RESPONSE_FUNC_EVAL)
