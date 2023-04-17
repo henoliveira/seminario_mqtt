@@ -19,17 +19,18 @@ def reponse_text_file(
     topic_req: str,
     topic_res: str,
 ):
-    arquivo = open('file.txt', 'w')
+    arquivo = open("file.txt", "w")
     arquivo.write(payload)
     arquivo.close()
     print(f"Got `{payload}` from topic `{topic_req}`")
+    utils.mqtt_publish(client, topic_res, "File edited successfully!")
 
 
 def reponse_func_eval(
     client: utils.Client,
     payload: str,
     topic_req: str,
-    topic_res: str, 
+    topic_res: str,
 ) -> None:
     print(f"Got `{payload}` from topic `{topic_req}`")
     utils.mqtt_publish(client=client, topic=topic_res, message=str(eval(payload)))
