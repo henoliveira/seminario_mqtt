@@ -1,13 +1,16 @@
+import os
 import random
 from typing import Any, Callable, Dict
 
+from dotenv import find_dotenv, load_dotenv
 from paho.mqtt.client import Client, MQTTMessage
 
-BROKER = "broker.emqx.io"
-PORT = 1883
-CLIENT_ID = f"python-mqtt-{random.randint(0, 1000)}"
-USERNAME = "emqx"
-PASSWORD = "public"
+load_dotenv(find_dotenv())
+
+BROKER = os.environ["BROKER"]
+PORT = int(os.environ["PORT"])
+USERNAME = os.environ["USERNAME"]
+PASSWORD = os.environ["PASSWORD"]
 
 
 class Topics:
@@ -42,7 +45,7 @@ def mqtt_connect() -> Client:
         else:
             print("Failed to connect, return code %d\n", rc)
 
-    client = Client(CLIENT_ID)
+    client = Client(f"python-mqtt-{random.randint(0, 1000)}")
     client.username_pw_set(USERNAME, PASSWORD)
     client.on_connect = on_connect
     client.connect(BROKER, PORT)
