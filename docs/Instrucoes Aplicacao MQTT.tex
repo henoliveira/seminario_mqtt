@@ -103,6 +103,8 @@ PASSWORD="public".
 \begin{enumerate}  
 \item A aplicação foi dividida em três arquivos .py, sendo um para o servidor, outro para o cliente e um terceiro para funções e configurações compartilhadas entre os dois primeiros. Essa estrutura permite uma maior organização e facilidade de manutenção do código.
 
+\item Antes de mais nada é necessário instalar as dependências do projeto, contidas no arquivo requirements.txt, além do Python na versão 3.10. Com a versão correta do Python instalada, navegue pelo terminal/cmd até a pasta do código fonte do projeto e execute o comando "pip install -r requirements.txt".
+
 \item Para utilizar a aplicação, é necessário definir algumas variáveis de ambiente na máquina do cliente e servidor. Essas variáveis incluem o endereço do broker, a porta, usuário e senha de conexão ao broker. É importante ressaltar que, como se trata de uma aplicação de demonstração, os valores utilizados são apenas mocks públicos.
 
 \item Após definir as variáveis de ambiente necessárias, é possível executar a aplicação através do comando python3 CAMINHO-PARA-ARQUIVO. Com o servidor e pelo menos um cliente em execução, é possível interagir com os prompts no terminal do cliente para realizar as operações desejadas, como contas matemáticas, respostas a texto e alteração de arquivos de texto no servidor.
