@@ -1,4 +1,7 @@
-# Seminário MQTT
+# Os documentos .tex, .pdf e slides estão na pasta [docs](https://github.com/henoliveira/seminario_mqtt/tree/main/docs).
+
+## Seminário MQTT
+
 Deverão ser elaborados os slides e o material didático em forma de tutorial sobre a tecnologia, os quais precisam
 incluir detalhes de preparação do ambiente de desenvolvimento (ex. configuração das variáveis de ambiente) e
 uso (ex. principais comandos do método). Como material adicional são bem-vindos resumos, apostilas, exercícios,
@@ -15,20 +18,20 @@ bibliotecas e demais aspectos técnicos necessários para o funcionamento do pro
 são C, C++, C#, Java, Python, Go, React, React-Native, Dart, Javascript (consulte previamente antes de adotar
 alguma não listada).
 
-## Entrega (25/04)
+### Entrega (25/04)
 - Duração (20~25 minutos).
 - Tutorial de instalação e uso (.tex e .pdf)
 - Slides (.ppt, .pptx ou .pdf)
 - Código Fonte.
 - Entrear tudo em um ZIP
 
-## Apresentação (03/05)
+### Apresentação (03/05)
 O grupo deverá entregar a documentação (slides, código, tutorial) e apresentar o seminário presencialmente.
 Fazer o upload da documentação (.zip) no link disponível **até o dia 25/04 as 23:59h. A apresentação será no dia 03/10.**
 ![image](https://user-images.githubusercontent.com/25267506/229153115-5dc6fb09-f1cb-48e4-a561-869d184f2a30.png)
 
 
-## Observações
+### Observações
 - Entregas fora do prazo serão desconsideradas e o grupo não receberá nota por esta atividade.
 - O material didático deve ser de autoria do grupo, mas é permitida a consulta a materiais disponíveis na
 internet e demais fontes. As fontes utilizadas devem ser referenciadas no material;
