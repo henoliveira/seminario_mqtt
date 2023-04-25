@@ -1,7 +1,7 @@
 from time import sleep
 from typing import Any
 
-import utils
+import utils as utils
 
 
 def on_message(client: utils.Client, userdata: Any, message: utils.MQTTMessage):

@@ -1,6 +1,6 @@
 from typing import Any
 
-import utils
+import utils as utils
 
 
 def response_text(
