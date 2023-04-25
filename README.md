@@ -1,4 +1,9 @@
-# Os documentos .tex, .pdf e slides estão na pasta [docs](https://github.com/henoliveira/seminario_mqtt/tree/main/docs).
+> Os documentos .tex, .pdf e slides estão na pasta [docs](https://github.com/henoliveira/seminario_mqtt/tree/main/docs).
+
+# Grupo
+- 2018003703 - HENRIQUE CASTRO OLIVEIRA
+- 2020032785 - ANTONIO BITTENCOURT PAGOTTO
+- 2020004243 - MARCELO MAGALHÃES SILVA
 
 ## Seminário MQTT
 
